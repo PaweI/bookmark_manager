@@ -23,6 +23,12 @@ set :views, Proc.new { File.join(root, '..', 'views') }
     erb :index
   end
 
+  get '/tags/:text' do
+    tag = Tag.first(:text => params[:text])
+    @links = tag ? tag.links : []
+    erb :index
+  end
+
   post '/links' do
     url = params["url"]
     title = params["title"]
