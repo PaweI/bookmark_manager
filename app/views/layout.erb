@@ -1,0 +1,10 @@
+<head>
+    <title>Welcome to the bookmark manager</title>
+  <link rel="stylesheet" type= "text/css" href="/css/application.css">
+</head>
+<body>
+  <% if current_user %>
+    Welcome, <%= current_user.email %>
+  <% end %>
+  <%= yield %>
+</body>
