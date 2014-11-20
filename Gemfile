@@ -4,6 +4,7 @@ gem 'bcrypt-ruby'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'sinatra'
+gem 'sinatra-partial'
 gem 'rack-flash3'
 
 group :development, :test do

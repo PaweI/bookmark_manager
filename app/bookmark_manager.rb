@@ -1,80 +1,23 @@
-require 'sinatra/base'
+require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
-require_relative 'data_mapper_setup'
+require 'sinatra/partial'
+require 'sinatra/base'
 require_relative 'helpers/application'
+require_relative 'data_mapper_setup'
+require_relative 'controllers/controllers_loader'
 
 
-class BookmarkManager < Sinatra::Base
+# class BookmarkManager < Sinatra::Base
+
+
 
 enable :sessions
-
 set :session_secret, 'super secret'
-
-set :public_folder, File.join(root, '..', 'public')
-
+set :public_folder, Proc.new { File.join(root, '..', 'public') }
 use Rack::Flash
+set :partial_template_engine, :erb
 
-  get '/' do
-    @links = Link.all
-    erb :index
-  end
-
-  get '/tags/:text' do
-    tag = Tag.first(:text => params[:text])
-    @links = tag ? tag.links : []
-    erb :index
-  end
-
-  get '/users/new' do
-    @user = User.new
-    erb :"users/new"
-  end
-
-  get '/sessions/new' do
-    erb :"sessions/new"
-  end
-
-  post '/links' do
-    url = params["url"]
-    title = params["title"]
-    tags = params["tags"].split(" ").map { |tag| Tag.first_or_create(:text => tag) }
-    Link.create(:url => url, :title => title, :tags => tags)
-    redirect to('/')
-  end
-
-  post '/users' do
-    @user = User.create(:email => params[:email],
-                       :password => params[:password],
-                       :password_confirmation => params[:password_confirmation])
-    if @user.save
-      session[:user_id] = @user.id
-      redirect to('/')
-    else
-      flash.now[:errors] = @user.errors.full_messages
-      erb :"users/new"
-    end
-  end
-
-  post '/sessions' do
-    email, password = params[:email], params[:password]
-    user = User.authenticate(email, password)
-    if user
-      session[:user_id] = user.id
-      redirect to('/')
-    else
-      flash[:errors] = ["The email or password is incorrect"]
-      erb :"sessions/new"
-    end
-  end
-
-  # delete '/sessions' do
-  post '/sessions/out' do
-    flash[:notice] = "Good bye!"
-    session[:user_id] = nil
-    redirect to('/')
-  end
-
-  # start the server if ruby file executed directly
-  run! if app_file == $0
-end
+#   # start the server if ruby file executed directly
+#   run! if app_file == $0
+# end
