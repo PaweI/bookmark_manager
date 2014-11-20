@@ -48,7 +48,7 @@ use Rack::Flash
                        :password => params[:password],
                        :password_confirmation => params[:password_confirmation])
     if @user.save
-      session['user_id'] = @user.id
+      session[:user_id] = @user.id
       redirect to('/')
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -66,6 +66,13 @@ use Rack::Flash
       flash[:errors] = ["The email or password is incorrect"]
       erb :"sessions/new"
     end
+  end
+
+  # delete '/sessions' do
+  post '/sessions/out' do
+    flash[:notice] = "Good bye!"
+    session[:user_id] = nil
+    redirect to('/')
   end
 
   # start the server if ruby file executed directly
