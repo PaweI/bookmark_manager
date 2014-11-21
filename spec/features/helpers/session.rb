@@ -18,4 +18,11 @@ module SessionHelpers
     click_on "Sign in"
   end
 
+   def forgot_password(email = "test@test.com")
+    visit('/sessions/new')
+    click_on "Forgot password?"
+    fill_in :email, :with => email
+    click_on "send"
+  end
+
 end

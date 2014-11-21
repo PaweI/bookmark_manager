@@ -14,6 +14,15 @@ post '/sessions' do
   end
 end
 
+post '/sessions/forgot' do
+  erb :forgotten_password
+end
+
+post '/sessions/new' do
+  flash[:notice] = "Instructions to reset password being sent to #{params[:email]}"
+  erb :"sessions/new"
+end
+
 delete '/sessions' do
   flash[:notice] = "Good bye!"
   session[:user_id] = nil
