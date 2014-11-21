@@ -4,6 +4,9 @@ require './app/bookmark_manager'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'sinatra'
+require 'dm-migrations'
+
+
 
 Capybara.app = BookmarkManager
 
@@ -28,6 +31,7 @@ Capybara.app = BookmarkManager
 RSpec.configure do |config|
 
   config.before(:suite) do
+    DataMapper.auto_migrate!
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end

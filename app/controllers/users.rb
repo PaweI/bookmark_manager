@@ -26,12 +26,12 @@ class BookmarkManager < Sinatra::Base
   post '/users/forgot_password' do
     user = User.first(:email => params[:email])
     if user
-      token = (1..64).map{('A'..'Z').to_a.sample}.join[1..50]
+      token = (1..64).map{('A'..'Z').to_a.sample}.join
       timestamp = Time.now
       user.update(password_token: token, password_token_timestamp: timestamp)
       flash[:notice] = "Instructions to reset password being sent to #{params[:email]}"
-      # p User.first.password_token.length
-      # redirect to('/users/reset_password/:token')
+      # p User.first.password_token
+      # redirect toc('/users/reset_password/:token')
 
     # else
     #   flash[:notice] = "Sorry, invalid user email"
