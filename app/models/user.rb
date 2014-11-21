@@ -7,9 +7,11 @@ class User
   attr_reader :password
   attr_accessor :password_confirmation
 
-  property :id,              Serial
-  property :email,           String, :unique => true, :message => "This email is already taken"
-  property :password_digest, Text
+  property :id,                       Serial
+  property :email,                    String, :unique => true, :message => "This email is already taken"
+  property :password_digest,          Text
+  property :password_token,           String, :length => 255
+  property :password_token_timestamp, String
 
   validates_confirmation_of :password, :message => "Sorry, your passwords don't match"
 

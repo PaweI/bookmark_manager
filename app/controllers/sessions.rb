@@ -16,13 +16,8 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
-  post '/sessions/forgot' do
+  get '/sessions/forgot_password' do
     erb :forgotten_password
-  end
-
-  post '/sessions/new' do
-    flash[:notice] = "Instructions to reset password being sent to #{params[:email]}"
-    erb :"sessions/new"
   end
 
   delete '/sessions' do
