@@ -1,5 +1,13 @@
 class BookmarkManager < Sinatra::Base 
 
+  def token
+    @token = (1..64).map{('A'..'Z').to_a.sample}.join
+  end
+
+  def timestamp
+    @timestamp = Time.now
+  end
+
   get '/users/new' do
     @user = User.new
     erb :"users/new"
@@ -25,8 +33,6 @@ class BookmarkManager < Sinatra::Base
   post '/users/forgot_password' do
     user = User.first(:email => params[:email])
     if user
-      token = (1..64).map{('A'..'Z').to_a.sample}.join
-      timestamp = Time.now
       user.update(password_token: token, password_token_timestamp: timestamp)
       flash[:notice] = "Instructions to reset password being sent to #{params[:email]}"
       redirect to('/users/reset_password/:token')
