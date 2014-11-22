@@ -19,8 +19,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/reset_password/:token' do
-    flash[:notice] = "Instructions to reset password being sent to #{params[:email]}"
-    "Hello, World"
+    erb :"sessions/new"
   end
 
   post '/users/forgot_password' do
@@ -30,12 +29,10 @@ class BookmarkManager < Sinatra::Base
       timestamp = Time.now
       user.update(password_token: token, password_token_timestamp: timestamp)
       flash[:notice] = "Instructions to reset password being sent to #{params[:email]}"
-      # p User.first.password_token
-      # redirect toc('/users/reset_password/:token')
-
-    # else
-    #   flash[:notice] = "Sorry, invalid user email"
-    #   redirect
+      redirect to('/users/reset_password/:token')
+    else
+      flash[:notice] = "Sorry, invalid user email"
+      redirect to('/sessions/new')
     end
   end
 
