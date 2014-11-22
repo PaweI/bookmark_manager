@@ -1,13 +1,5 @@
 class BookmarkManager < Sinatra::Base 
 
-  def token
-    @token = (1..64).map{('A'..'Z').to_a.sample}.join
-  end
-
-  def timestamp
-    @timestamp = Time.now
-  end
-
   get '/users/new' do
     @user = User.new
     erb :"users/new"
