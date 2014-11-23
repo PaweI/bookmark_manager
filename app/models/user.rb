@@ -11,7 +11,7 @@ class User
   property :email,                    String, :unique => true, :message => "This email is already taken"
   property :password_digest,          Text
   property :password_token,           String, :length => 255
-  property :password_token_timestamp, String
+  property :password_token_timestamp, Time
 
   validates_confirmation_of :password, :message => "Sorry, your passwords don't match"
 

@@ -1,8 +1,8 @@
-# require 'sinatra'
 require 'data_mapper'
-require 'rack-flash'
-require 'sinatra/partial'
 require 'sinatra/base'
+require 'sinatra/partial'
+require 'rack-flash'
+
 require_relative 'helpers/application'
 require_relative 'data_mapper_setup'
 require_relative 'controllers/controllers_loader'
