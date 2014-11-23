@@ -2,6 +2,7 @@ require 'data_mapper'
 require 'sinatra/base'
 require 'sinatra/partial'
 require 'rack-flash'
+require 'rest-client'
 
 require_relative 'helpers/application'
 require_relative 'data_mapper_setup'
