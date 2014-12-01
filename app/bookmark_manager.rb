@@ -15,7 +15,7 @@ class BookmarkManager < Sinatra::Base
 
 enable :sessions
 set :session_secret, 'super secret'
-set :public_folder, File.join(root, '..', 'public') 
+set :public_folder, File.join(root, '../..', 'public') 
 set :views, File.join(root, '..', 'views')
 use Rack::MethodOverride
 use Rack::Flash
