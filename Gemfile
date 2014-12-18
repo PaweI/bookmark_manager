@@ -7,6 +7,7 @@ gem 'sinatra'
 gem 'sinatra-partial'
 gem 'rack-flash3'
 gem 'rest-client'
+gem 'rake'
 
 group :development, :test do
 
