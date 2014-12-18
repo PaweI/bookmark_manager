@@ -1,6 +1,6 @@
 env = ENV["RACK_ENV"] || "development"
 
-DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_COPPER_URL'])
+DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_BLUE_URL'])
 
 require_relative "models/link"
 require_relative "models/tag"
