@@ -11,10 +11,10 @@ def timestamp
 end
 
 def send_simple_message
-  RestClient.post "https://api:key-511213ccddec0d0011222357a21c3558"\
-  "@api.mailgun.net/v2/sandboxade8e1953e7f44919e21034bcd53a3b4.mailgun.org/messages",
-  :from => "Mailgun Sandbox <postmaster@sandboxade8e1953e7f44919e21034bcd53a3b4.mailgun.org>",
-  :to => "Pavel <pavel.redics@gmail.com>",
+  RestClient.post "https://#{ENV['MAILGUN_API_KEY']}"\
+  "@api.mailgun.net/v2/#{ENV['MAILGUN_FROM_ADDRESS']}/messages",
+  :from => "Mailgun Sandbox <#{ENV['MAILGUN_FROM_ADDRESS']}>",
+  :to => "Pavel ***",
   :subject => "Hello Pavel",
   :text => "Here is your link to change your password http://localhost:9292/users/reset_password/:#{token}"
 end
