@@ -10,7 +10,6 @@ gem 'rest-client'
 gem 'rake'
 
 group :development, :test do
-
   gem 'capybara'
   gem 'cucumber'
   gem 'cucumber-sinatra'
@@ -18,5 +17,4 @@ group :development, :test do
   gem 'launchy'
   gem 'shotgun'
   gem 'rspec'
-
 end

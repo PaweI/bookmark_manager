@@ -1,5 +1,4 @@
 class BookmarkManager < Sinatra::Base
-
   get '/sessions/new' do
     erb :"sessions/new"
   end
@@ -11,7 +10,7 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect to('/')
     else
-      flash[:errors] = ["The email or password is incorrect"]
+      flash[:errors] = ['The email or password is incorrect']
       erb :"sessions/new"
     end
   end
@@ -21,11 +20,8 @@ class BookmarkManager < Sinatra::Base
   end
 
   delete '/sessions' do
-    flash[:notice] = "Good bye!"
+    flash[:notice] = 'Good bye!'
     session[:user_id] = nil
     redirect to('/')
-  end 
-
+  end
 end
-
-

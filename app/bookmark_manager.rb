@@ -8,12 +8,10 @@ require_relative 'helpers/application'
 require_relative 'data_mapper_setup'
 require_relative 'controllers/controllers_loader'
 
-
 class BookmarkManager < Sinatra::Base
-
   enable :sessions
   set :session_secret, 'super secret'
-  set :public_folder, File.join(root, '../..', 'public') 
+  set :public_folder, File.join(root, '../..', 'public')
   set :views, File.join(root, '..', 'views')
   use Rack::MethodOverride
   use Rack::Flash
@@ -24,6 +22,5 @@ class BookmarkManager < Sinatra::Base
   end
 
   # start the server if ruby file executed directly
-  run! if app_file == $0
-    
+  run! if app_file == $PROGRAM_NAME
 end
